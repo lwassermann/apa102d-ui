@@ -4,10 +4,14 @@ import './effect.css';
 
 function Effect(props) {
   const parameters = Object.keys(props.parameters)
-  .map(parameterName => (<Parameter name={parameterName} {...props.parameters[parameterName]} />));
+  .map(parameterName => (<Parameter
+    key={parameterName}
+    name={parameterName}
+    {...props.parameters[parameterName]}
+  />));
 
   return (
-    <div className="effect">
+    <div className={props.active ? 'effect active' : 'effect'}>
       <div className="effect-header">
         {props.name}
       </div>
@@ -18,6 +22,7 @@ function Effect(props) {
 
 Effect.propTypes = {
   name: React.PropTypes.string.isRequired,
+  active: React.PropTypes.boolean,
   parameters: React.PropTypes.object
 };
 

@@ -4,18 +4,32 @@ import './app.css';
 import Effect from './effect';
 import effects from './effects.json';
 
-function App() {
-  const effectNodes = effects.map(effect => (<Effect {...effect} />));
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      effect: 'off'
+    };
+  }
 
-  return (
-    <div className="App">
-      <div className="App-header">
-        <h2>Welcome to React</h2>
+  render() {
+    const effectNodes = effects.map((effect) => {
+      if (effect.name === this.state.effect) {
+        return (<Effect key={effect.name} {...effect} active {...this.state} />);
+      }
+      return (<Effect key={effect.name} {...effect} />);
+    });
+
+    return (
+      <div className="App">
+        <div className="App-header">
+          <h2>APA102 Daemon control</h2>
+        </div>
+        <p className="App-intro">Lorem ipsum dolor sit amet</p>
+        {effectNodes}
       </div>
-      <p className="App-intro">Lorem ipsum dolor sit amet</p>
-      {effectNodes}
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

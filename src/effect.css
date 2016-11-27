@@ -8,6 +8,10 @@
   color: white;
 }
 
+.effect.active .effect-header {
+  background-color: #444;
+}
+
 .effect-intro {
   font-size: large;
 }
