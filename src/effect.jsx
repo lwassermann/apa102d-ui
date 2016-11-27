@@ -15,7 +15,9 @@ function Effect(props) {
       <div className="effect-header">
         {props.name}
       </div>
-      {parameters}
+      <div className="effect-parameters">
+        {parameters}
+      </div>
     </div>
   );
 }

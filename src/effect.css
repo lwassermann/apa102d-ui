@@ -12,6 +12,10 @@
   background-color: #444;
 }
 
-.effect-intro {
-  font-size: large;
+.effect-parameters {
+  display: none;
+}
+
+.effect.active .effect-parameters {
+  display: block;
 }
