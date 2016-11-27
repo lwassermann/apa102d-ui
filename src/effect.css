@@ -1,0 +1,13 @@
+.effect {
+  text-align: center;
+}
+
+.effect-header {
+  background-color: #222;
+  padding: 20px;
+  color: white;
+}
+
+.effect-intro {
+  font-size: large;
+}
