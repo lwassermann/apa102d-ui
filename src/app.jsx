@@ -3,13 +3,22 @@ import React from 'react';
 import './app.css';
 import Effect from './effect';
 import effects from './effects.json';
+import * as communication from './communication';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      effect: 'off'
+      effect: 'bubbels'
     };
+  }
+
+  componentDidMount() {
+    this.subscription = communication.subscribe(serverState => this.setState(serverState));
+  }
+
+  componentWillUnmount() {
+    communication.unsubscribe(this.subscription);
   }
 
   render() {

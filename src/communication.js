@@ -1,9 +1,15 @@
+const state = {
+  listeners: []
+};
+
 // Communication ***********************************************************************************
 
 function send(message) {
   const body = Object.keys(message).map(key => `${key}=${message[key]}`).join('&');
-  return fetch('/effects', { method: 'POST', body: 'effect=off' })
-    .then(() => fetch('/effects', { method: 'POST', body }))
+  const shouldSwitchOff = message.hasOwnProperty('effect');
+  return (shouldSwitchOff ? fetch('/effects', { method: 'POST', body: 'effect=off' })
+                              .then(() => fetch('/effects', { method: 'POST', body })) :
+                            fetch('/effects', { method: 'POST', body }))
     .then(response => response.text())
     .then((answer) => {
       const result = {};
@@ -14,25 +20,38 @@ function send(message) {
           result[key] = value;
         });
       return result;
-    });
+    })
+    .then(serverState => state.listeners.forEach(fn => fn && fn(serverState)));
 }
 
 // State Transitions *******************************************************************************
 
-function select(effect, next) {
-  return function() {
-    send({ effect: effect.name }).then(newState => next(newState));
-  };
+// function select(effect) {
+//   return function() {
+//     send({ effect: effect.name });
+//   };
+// }
+
+// function changeParameter(state, paramName, effectName) {
+//   return function(value) {
+//     if (state.effect === effectName) {
+//       send(Object.assign({}, state, { [paramName]: value }));
+//     } else {
+//       send({ effect: effectName, [paramName]: value });
+//     }
+//   };
+// }
+
+function subscribe(fn) {
+  if (state.listeners.length === 0) {
+    send({});
+  }
+  return state.listeners.push(fn);
 }
 
-function changeParameter(state, paramName, effectName, next) {
-  return function(value) {
-    if (state.effect === effectName) {
-      send(Object.assign({}, state, { [paramName]: value })).then(newState => next(newState));
-    } else {
-      send({ effect: effectName, [paramName]: value }).then(newState => next(newState));
-    }
-  };
+function unsubscribe(id) {
+  state.listeners[id - 1] = null;
 }
 
-export { select, send, changeParameter };
+export default { send, subscribe, unsubscribe };
+export { send, subscribe, unsubscribe };
