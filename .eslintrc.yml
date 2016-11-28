@@ -57,3 +57,4 @@
 
     # this is a hobby project -> we want console everywhere to check for sanity in absence of calcifying tests
     no-console: 0
+    no-prototype-builtins: 0

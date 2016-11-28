@@ -4,7 +4,5 @@ import App from './app';
 import './index.css';
 import './polyfills';
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+ReactDOM.render(React.createElement(App, null, null),
+                document.getElementById('root'));

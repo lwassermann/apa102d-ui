@@ -26,7 +26,9 @@ class App extends React.Component {
           <h2>APA102 Daemon control</h2>
         </div>
         <p className="App-intro">Lorem ipsum dolor sit amet</p>
-        {effectNodes}
+        <div>
+          {effectNodes}
+        </div>
       </div>
     );
   }

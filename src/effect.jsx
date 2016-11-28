@@ -2,6 +2,8 @@ import React from 'react';
 
 import './effect.css';
 
+import Color from './parameters/color';
+
 function Effect(props) {
   const parameters = Object.keys(props.parameters)
   .map(parameterName => (<Parameter
@@ -24,7 +26,7 @@ function Effect(props) {
 
 Effect.propTypes = {
   name: React.PropTypes.string.isRequired,
-  active: React.PropTypes.boolean,
+  active: React.PropTypes.bool,
   parameters: React.PropTypes.object
 };
 
@@ -34,7 +36,7 @@ Effect.defaultProps = {
 
 function Parameter(props) {
   switch (props.type) {
-    case 'color': return (<div>Color {props.name}</div>);
+    case 'color': return (<Color {...props} />);
     case 'time': return (<div>Time {props.name}</div>);
     default: return (<div>Unknown Type {props.type} {props.name}</div>);
   }
