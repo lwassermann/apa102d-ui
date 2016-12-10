@@ -3,9 +3,14 @@
 }
 
 .effect-header {
+  display: block;
+  width: calc(100% - 10px);
   background-color: #222;
   padding: 20px;
   color: white;
+  box-sizing: border-box;
+  margin: 5px 5px 0 5px;
+  border: 0;
 }
 
 .effect.active .effect-header {
@@ -13,6 +18,13 @@
 }
 
 .effect-parameters {
+  display: none;
+  border: 1px solid #444;
+  padding: 5px 20px 20px 20px;
+  margin: 0 5px 10px 5px;
+}
+
+.effect.active .effect-parameters:empty {
   display: none;
 }
 

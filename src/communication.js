@@ -2,14 +2,16 @@ const state = {
   listeners: []
 };
 
+const ENDPOINT = '/api/effects';
+
 // Communication ***********************************************************************************
 
 function send(message) {
   const body = Object.keys(message).map(key => `${key}=${message[key]}`).join('&');
   const shouldSwitchOff = message.hasOwnProperty('effect');
-  return (shouldSwitchOff ? fetch('/effects', { method: 'POST', body: 'effect=off' })
-                              .then(() => fetch('/effects', { method: 'POST', body })) :
-                            fetch('/effects', { method: 'POST', body }))
+  return (shouldSwitchOff ? fetch(ENDPOINT, { method: 'POST', body: 'effect=off' })
+                              .then(() => fetch(ENDPOINT, { method: 'POST', body })) :
+                            fetch(ENDPOINT, { method: 'POST', body }))
     .then(response => response.text())
     .then((answer) => {
       const result = {};
