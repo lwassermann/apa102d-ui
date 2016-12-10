@@ -3,7 +3,7 @@ import React from 'react';
 import './app.css';
 import Effect from './effect';
 import effects from './effects.json';
-import * as communication from './communication';
+import { subscribe, unsubscribe } from './communication';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,11 +14,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.subscription = communication.subscribe(serverState => this.setState(serverState));
+    this.subscription = subscribe(serverState => this.setState(serverState));
   }
 
   componentWillUnmount() {
-    communication.unsubscribe(this.subscription);
+    unsubscribe(this.subscription);
   }
 
   render() {

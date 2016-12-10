@@ -53,5 +53,4 @@ function unsubscribe(id) {
   state.listeners[id - 1] = null;
 }
 
-export default { send, subscribe, unsubscribe };
 export { send, subscribe, unsubscribe };
