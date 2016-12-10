@@ -1,0 +1,20 @@
+@media (min-width:1000px){
+  .parameter {
+    width: 25%;
+  }
+}
+@media (max-width:999px) and (min-width:600px){
+  .parameter {
+    width: 33%;
+  }
+}
+@media (max-width:599px) and (min-width: 400px){
+  .parameter {
+    width: 50%;
+  }
+}
+@media (max-width:399px){
+  .parameter {
+    width: 100%;
+  }
+}

@@ -2,7 +2,7 @@ import React from 'react';
 
 import './effect.css';
 
-import Color from './parameters/color';
+import Parameter from './parameters';
 import { send } from './communication';
 
 function selectEffect(name) {
@@ -28,9 +28,9 @@ function Effect(props) {
 
   return (
     <div className={props.active ? 'effect active' : 'effect'}>
-      <div className="effect-header" onClick={selectEffect(props.name)}>
+      <button className="effect-header" onClick={selectEffect(props.name)}>
         {props.name}
-      </div>
+      </button>
       <div className="effect-parameters">
         {parameters}
       </div>
@@ -46,18 +46,6 @@ Effect.propTypes = {
 
 Effect.defaultProps = {
   parameters: {}
-};
-
-function Parameter(props) {
-  switch (props.type) {
-    case 'color': return (<Color {...props} />);
-    case 'time': return (<div>Time {props.name}</div>);
-    default: return (<div>Unknown Type {props.type} {props.name}</div>);
-  }
-}
-Parameter.propTypes = {
-  type: React.PropTypes.string.isRequired,
-  name: React.PropTypes.string.isRequired
 };
 
 export default Effect;

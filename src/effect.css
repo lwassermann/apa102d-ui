@@ -13,6 +13,10 @@
   border: 0;
 }
 
+.effect-header:focus {
+  outline: none;
+}
+
 .effect.active .effect-header {
   background-color: #444;
 }
@@ -29,5 +33,6 @@
 }
 
 .effect.active .effect-parameters {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
 }
