@@ -47,6 +47,7 @@ Effect.propTypes = {
 };
 
 Effect.defaultProps = {
+  active: false,
   parameters: {}
 };
 
