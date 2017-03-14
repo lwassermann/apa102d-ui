@@ -24,7 +24,7 @@ class App extends React.Component {
   render() {
     const effectNodes = effects.map((effect) => {
       if (effect.name === this.state.effect) {
-        return (<Effect key={effect.name} {...effect} active {...this.state} />);
+        return (<Effect key={effect.name} {...effect} active state={this.state} />);
       }
       return (<Effect key={effect.name} {...effect} />);
     });

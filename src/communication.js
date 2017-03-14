@@ -19,7 +19,7 @@ function send(message) {
         .split(' ')
         .map(ea => ea.split('='))
         .forEach(([key, value]) => {
-          result[key] = value;
+          if (key) { result[key] = value; }
         });
       return result;
     })

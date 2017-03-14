@@ -11,9 +11,11 @@ function selectEffect(name) {
   };
 }
 
-function updateEffect(name, props) {
-  return (arg) => {
-    console.log(name, props, arg);
+function updateEffect(props) {
+  return (paramName, value) => {
+    console.log(props, paramName, value);
+    // const parameters = Object.assign({}, { [paramName]: value })
+    // send({ effect: name, ...parameters });
   };
 }
 
@@ -23,7 +25,7 @@ function Effect(props) {
     key={parameterName}
     name={parameterName}
     {...props.parameters[parameterName]}
-    onChange={updateEffect(name, props)}
+    onChange={updateEffect(props)}
   />));
 
   return (
