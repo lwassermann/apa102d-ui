@@ -17,7 +17,7 @@ class Color extends React.Component {
     const g = Number.parseInt(value.slice(3, 5), 16);
     const b = Number.parseInt(value.slice(5, 7), 16);
     const { h, s, v } = RGBtoHSV(r, g, b);
-    this.props.onChange(this.props.name, `hsv(${h},${s},${v})`);
+    this.props.onChange(`hsv(${h},${s},${v})`);
   }
 
   toRGBValue(currentValue) {
@@ -29,7 +29,7 @@ class Color extends React.Component {
   }
 
   render() {
-    const rgb = this.toRGBValue(this.props.default);
+    const rgb = this.toRGBValue(this.props.currentValue || this.props.default);
 
     return (
       <div className="parameter color">
@@ -45,11 +45,13 @@ class Color extends React.Component {
 Color.propTypes = {
   name: React.PropTypes.string.isRequired,
   default: React.PropTypes.string,
+  currentValue: React.PropTypes.string,
   onChange: React.PropTypes.func.isRequired
 };
 
 Color.defaultProps = {
-  default: 'hsv(0.0,0.0,0.0)'
+  default: 'hsv(0.0,0.0,0.0)',
+  currentValue: ''
 };
 
 export default Color;

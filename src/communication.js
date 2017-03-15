@@ -42,14 +42,12 @@ function selectEffect(effectName) {
   };
 }
 
-function changeParameter(paramName, effectName) {
-  return function(value) {
-    if (state.current.effect === effectName) {
-      send(Object.assign({}, state.current, { [paramName]: value }));
-    } else {
-      send({ effect: effectName, [paramName]: value });
-    }
-  };
+function changeParameter(paramName, value, effectName) {
+  if (state.current.effect === effectName) {
+    return send(Object.assign({}, state.current, { [paramName]: value }));
+  }
+
+  return send({ effect: effectName, [paramName]: value });
 }
 
 function subscribe(fn) {

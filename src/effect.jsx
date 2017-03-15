@@ -3,24 +3,23 @@ import React from 'react';
 import './effect.css';
 
 import Parameter from './parameters';
-import { selectEffect } from './communication';
+import { selectEffect, changeParameter } from './communication';
 
-function updateEffect(props) {
-  return (paramName, value) => {
-    console.log(props, paramName, value);
-    // const parameters = Object.assign({}, { [paramName]: value })
-    // send({ effect: name, ...parameters });
-  };
+function updateEffect(effect, parameterName) {
+  return value => changeParameter(parameterName, value, effect.name);
 }
 
 function Effect(props) {
   const parameters = Object.keys(props.parameters)
-  .map(parameterName => (<Parameter
-    key={parameterName}
-    name={parameterName}
-    {...props.parameters[parameterName]}
-    onChange={updateEffect(props)}
-  />));
+  .map(parameterName => (
+    <Parameter
+      key={parameterName}
+      name={parameterName}
+      {...props.parameters[parameterName]}
+      currentValue={props.state[parameterName]}
+      onChange={updateEffect(props, parameterName)}
+    />
+  ));
 
   return (
     <div className={props.active ? 'effect active' : 'effect'}>
@@ -37,12 +36,14 @@ function Effect(props) {
 Effect.propTypes = {
   name: React.PropTypes.string.isRequired,
   active: React.PropTypes.bool,
-  parameters: React.PropTypes.shape({})
+  parameters: React.PropTypes.shape({}),
+  state: React.PropTypes.shape({})
 };
 
 Effect.defaultProps = {
   active: false,
-  parameters: {}
+  parameters: {},
+  state: {}
 };
 
 export default Effect;
