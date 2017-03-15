@@ -3,6 +3,8 @@ const state = {
   current: null
 };
 
+global.getState = () => state;
+
 const ENDPOINT = '/api/effects';
 
 // Communication ***********************************************************************************
