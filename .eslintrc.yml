@@ -11,24 +11,23 @@
     # Can be automatically transformed everywhere with `eslint --fix`
     space-before-function-paren:
       - 2
-      - "never"
+      - never
+
+    # Enfore no semis
+    semi:
+      - 2
+      - never
 
     # in contrast to the old lint configuration, enforce the absence of dangling commas
     comma-dangle:
       - 2
-      - "never"
+      - never
 
     # allow unnamed anonymous functions
     func-names: 0
 
     # the airbnb toolchain presupposes concatenation and prepending 'use strict'
     strict: 0
-
-    # deactivate enforced indentation, activate at own peril
-    indent:
-      - 0
-      - 2
-      - SwitchCase: 1
 
     # allows us to sort functions and classes in a logical order, rather than the inverse inclusion order
     no-use-before-define: 1

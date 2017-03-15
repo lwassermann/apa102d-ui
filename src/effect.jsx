@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import './effect.css';
+import './effect.css'
 
-import Parameter from './parameters';
-import { selectEffect, changeParameter } from './communication';
+import Parameter from './parameters'
+import { selectEffect, changeParameter } from './communication'
 
 function updateEffect(effect, parameterName) {
-  return value => changeParameter(parameterName, value, effect.name);
+  return value => changeParameter(parameterName, value, effect.name)
 }
 
 function Effect(props) {
@@ -19,7 +19,7 @@ function Effect(props) {
       currentValue={props.state[parameterName]}
       onChange={updateEffect(props, parameterName)}
     />
-  ));
+  ))
 
   return (
     <div className={props.active ? 'effect active' : 'effect'}>
@@ -30,7 +30,7 @@ function Effect(props) {
         {parameters}
       </div>
     </div>
-  );
+  )
 }
 
 Effect.propTypes = {
@@ -38,12 +38,12 @@ Effect.propTypes = {
   active: React.PropTypes.bool,
   parameters: React.PropTypes.shape({}),
   state: React.PropTypes.shape({})
-};
+}
 
 Effect.defaultProps = {
   active: false,
   parameters: {},
   state: {}
-};
+}
 
-export default Effect;
+export default Effect
