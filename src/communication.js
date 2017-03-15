@@ -1,10 +1,17 @@
 const state = {
-  listeners: []
+  listeners: [],
+  current: null
 };
 
 const ENDPOINT = '/api/effects';
 
 // Communication ***********************************************************************************
+
+function updateState(serverState) {
+  state.current = serverState;
+  state.listeners.forEach(fn => fn && fn(serverState));
+  return state.current;
+}
 
 function send(message) {
   const body = Object.keys(message).map(key => `${key}=${message[key]}`).join('&');
@@ -24,26 +31,26 @@ function send(message) {
       });
     return result;
   })
-  .then(serverState => state.listeners.forEach(fn => fn && fn(serverState)));
+  .then(updateState);
 }
 
 // State Transitions *******************************************************************************
 
-// function select(effect) {
-//   return function() {
-//     send({ effect: effect.name });
-//   };
-// }
+function selectEffect(effectName) {
+  return function() {
+    send({ effect: effectName });
+  };
+}
 
-// function changeParameter(state, paramName, effectName) {
-//   return function(value) {
-//     if (state.effect === effectName) {
-//       send(Object.assign({}, state, { [paramName]: value }));
-//     } else {
-//       send({ effect: effectName, [paramName]: value });
-//     }
-//   };
-// }
+function changeParameter(paramName, effectName) {
+  return function(value) {
+    if (state.current.effect === effectName) {
+      send(Object.assign({}, state.current, { [paramName]: value }));
+    } else {
+      send({ effect: effectName, [paramName]: value });
+    }
+  };
+}
 
 function subscribe(fn) {
   if (state.listeners.length === 0) {
@@ -56,4 +63,4 @@ function unsubscribe(id) {
   state.listeners[id - 1] = null;
 }
 
-export { send, subscribe, unsubscribe };
+export { send, subscribe, unsubscribe, selectEffect, changeParameter };

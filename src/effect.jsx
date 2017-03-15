@@ -3,13 +3,7 @@ import React from 'react';
 import './effect.css';
 
 import Parameter from './parameters';
-import { send } from './communication';
-
-function selectEffect(name) {
-  return () => {
-    send({ effect: name });
-  };
-}
+import { selectEffect } from './communication';
 
 function updateEffect(props) {
   return (paramName, value) => {
