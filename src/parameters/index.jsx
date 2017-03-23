@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 
 import Color from './color'
+import Time from './time'
 import './parameters.css'
 
 function Parameter(props) {
@@ -8,7 +9,7 @@ function Parameter(props) {
     case 'color':
       return (<Color {...props} />)
     case 'time':
-      return (<div className="parameter">Time {props.name}: {props.currentValue}</div>)
+      return (<Time {...props} />)
     default:
       return (<div className="parameter">Unknown Type {props.type} {props.name}: {props.currentValue}</div>)
   }
