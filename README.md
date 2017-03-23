@@ -5,8 +5,6 @@ This is some experimentation with the React Eco-System in the context of a Web-U
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Next Steps:
-* [ ] Update values of effect parameters
-* [ ] Introduce more variable types (i.e. timing)
 * [ ] Connect with the actual daemon
-
-
+* [ ] Improve the Parameters to something more intuitive, not relying as much on HTML5
+* [ ] Send the whole spec, and not just the changed parameter (including defaults)
