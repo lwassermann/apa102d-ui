@@ -24,10 +24,7 @@
       "test_length_ms": {
         "type": "time",
         "default": 10,
-        "range": [
-          5,
-          1000
-        ]
+        "range": [5, 1000]
       },
       "color": {
         "type": "color",

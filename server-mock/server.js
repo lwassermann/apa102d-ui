@@ -22,7 +22,9 @@ function handOffToApa102(req, res) {
   if (req.method === 'POST') {
     let fullBody = ''
 
-    req.on('data', (chunk) => { fullBody += chunk.toString() })
+    req.on('data', chunk => {
+      fullBody += chunk.toString()
+    })
 
     req.on('end', function() {
       const decodedBody = querystring.parse(fullBody)

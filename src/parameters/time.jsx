@@ -1,4 +1,5 @@
 import React from 'react'
+import { string, number, arrayOf, func } from 'prop-types'
 
 // import './color.css';
 
@@ -10,13 +11,12 @@ class Time extends React.Component {
   constructor() {
     super()
 
-    this.onChange = this.onChange.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  onChange(event) {
-    const value = event.target.value
-    const number = clamp(Number.parseInt(value, 10), this.props.range)
-    this.props.onChange(number)
+  handleChange(event) {
+    const value = clamp(Number.parseInt(event.target.value, 10), this.props.range)
+    this.props.onChange(value)
   }
 
   render() {
@@ -27,18 +27,18 @@ class Time extends React.Component {
         <span className="time-header">
           {this.props.name}
         </span>
-        <input type="number" value={currentValue} onChange={this.onChange} />
+        <input type="number" value={currentValue} onChange={this.handleChange} />
       </div>
     )
   }
 }
 
 Time.propTypes = {
-  name: React.PropTypes.string.isRequired,
-  default: React.PropTypes.number.isRequired,
-  range: React.PropTypes.arrayOf(React.PropTypes.number).isRequired,
-  currentValue: React.PropTypes.number,
-  onChange: React.PropTypes.func.isRequired
+  name: string.isRequired,
+  default: number.isRequired,
+  range: arrayOf(number).isRequired,
+  currentValue: number,
+  onChange: func.isRequired
 }
 
 Time.defaultProps = {

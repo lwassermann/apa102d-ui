@@ -1,4 +1,5 @@
 import React from 'react'
+import { bool, string, shape } from 'prop-types'
 
 import './effect.css'
 
@@ -10,8 +11,7 @@ function updateEffect(effect, parameterName) {
 }
 
 function Effect(props) {
-  const parameters = Object.keys(props.parameters)
-  .map(parameterName => (
+  const parameters = Object.keys(props.parameters).map(parameterName =>
     <Parameter
       key={parameterName}
       name={parameterName}
@@ -19,7 +19,7 @@ function Effect(props) {
       currentValue={props.state[parameterName]}
       onChange={updateEffect(props, parameterName)}
     />
-  ))
+  )
 
   return (
     <div className={props.active ? 'effect active' : 'effect'}>
@@ -34,10 +34,10 @@ function Effect(props) {
 }
 
 Effect.propTypes = {
-  name: React.PropTypes.string.isRequired,
-  active: React.PropTypes.bool,
-  parameters: React.PropTypes.shape({}),
-  state: React.PropTypes.shape({})
+  name: string.isRequired,
+  active: bool,
+  parameters: shape({}),
+  state: shape({})
 }
 
 Effect.defaultProps = {

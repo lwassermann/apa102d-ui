@@ -19,21 +19,21 @@ function send(message) {
   const body = Object.keys(message).map(key => `${key}=${message[key]}`).join('&')
   const shouldSwitchOff = message.hasOwnProperty('effect')
   return (shouldSwitchOff
-    ? fetch(ENDPOINT, { method: 'POST', body: 'effect=off' })
-      .then(() => fetch(ENDPOINT, { method: 'POST', body }))
+    ? fetch(ENDPOINT, { method: 'POST', body: 'effect=off' }).then(() =>
+        fetch(ENDPOINT, { method: 'POST', body })
+      )
     : fetch(ENDPOINT, { method: 'POST', body }))
-  .then(response => response.text())
-  .then((answer) => {
-    const result = {}
-    answer.trim()
-      .split(' ')
-      .map(ea => ea.split('='))
-      .forEach(([key, value]) => {
-        if (key) { result[key] = value }
+    .then(response => response.text())
+    .then(answer => {
+      const result = {}
+      answer.trim().split(' ').map(ea => ea.split('=')).forEach(([key, value]) => {
+        if (key) {
+          result[key] = value
+        }
       })
-    return result
-  })
-  .then(updateState)
+      return result
+    })
+    .then(updateState)
 }
 
 // State Transitions *******************************************************************************
