@@ -9,16 +9,16 @@ class Color extends React.Component {
   constructor() {
     super()
 
-    this.handleChange = this.handleChange.bind(this)
+    this.onChange = this.onChange.bind(this)
   }
 
-  handleChange(event) {
+  onChange(event) {
     const value = event.target.value
     const r = Number.parseInt(value.slice(1, 3), 16)
     const g = Number.parseInt(value.slice(3, 5), 16)
     const b = Number.parseInt(value.slice(5, 7), 16)
     const { h, s, v } = RGBtoHSV(r, g, b)
-    this.props.onChange(`hsv(${h},${s},${v})`)
+    this.props.onChange(this.props.name, `hsv(${h},${s},${v})`)
   }
 
   toRGBValue(currentValue) {
@@ -48,13 +48,11 @@ class Color extends React.Component {
 Color.propTypes = {
   name: string.isRequired,
   default: string,
-  currentValue: string,
   onChange: func.isRequired
 }
 
 Color.defaultProps = {
-  default: 'hsv(0.0,0.0,0.0)',
-  currentValue: ''
+  default: 'hsv(0.0,0.0,0.0)'
 }
 
 export default Color

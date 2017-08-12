@@ -26,23 +26,21 @@ function send(message) {
     .then(response => response.text())
     .then(answer => {
       const result = {}
-      answer.trim().split(' ').map(ea => ea.split('=')).forEach(([key, value]) => {
-        if (key) {
-          result[key] = value
-        }
-      })
+      answer //
+        .trim()
+        .split(' ')
+        .map(ea => ea.split('='))
+        .forEach(([key, value]) => {
+          if (key) {
+            result[key] = value
+          }
+        })
       return result
     })
     .then(updateState)
 }
 
 // State Transitions *******************************************************************************
-
-function selectEffect(effectName) {
-  return function() {
-    send({ effect: effectName })
-  }
-}
 
 function changeParameter(paramName, value, effectName) {
   if (state.current.effect === effectName) {
@@ -63,4 +61,4 @@ function unsubscribe(id) {
   state.listeners[id - 1] = null
 }
 
-export { send, subscribe, unsubscribe, selectEffect, changeParameter }
+export { send, subscribe, unsubscribe, changeParameter }

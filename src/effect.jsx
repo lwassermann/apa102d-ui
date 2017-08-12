@@ -4,10 +4,20 @@ import { bool, string, shape } from 'prop-types'
 import './effect.css'
 
 import Parameter from './parameters'
-import { selectEffect, changeParameter } from './communication'
+import { send } from './communication'
 
-function updateEffect(effect, parameterName) {
-  return value => changeParameter(parameterName, value, effect.name)
+function selectEffect(name) {
+  return () => {
+    send({ effect: name })
+  }
+}
+
+function updateEffect(props) {
+  return (paramName, value) => {
+    console.log(props, paramName, value)
+    // const parameters = Object.assign({}, { [paramName]: value })
+    // send({ effect: name, ...parameters });
+  }
 }
 
 function Effect(props) {
@@ -16,8 +26,7 @@ function Effect(props) {
       key={parameterName}
       name={parameterName}
       {...props.parameters[parameterName]}
-      currentValue={props.state[parameterName]}
-      onChange={updateEffect(props, parameterName)}
+      onChange={updateEffect(props)}
     />
   )
 
