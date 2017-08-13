@@ -3,7 +3,6 @@ import { string } from 'prop-types'
 
 import Color from './color'
 import Time from './time'
-import './parameters.css'
 
 function Parameter(props) {
   switch (props.type) {

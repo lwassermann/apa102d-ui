@@ -1,13 +1,19 @@
 import React from 'react'
+import { MuiThemeProvider } from 'material-ui/styles'
+import AppBar from 'material-ui/AppBar'
+import Toolbar from 'material-ui/Toolbar'
+import Typography from 'material-ui/Typography'
 
-import './app.css'
-import Effect from './effect'
-import effects from './effects.json'
+import effects from './config/effects'
+import theme from './config/theme'
+
 import { subscribe, unsubscribe } from './communication'
+import Effect from './effect'
+import Introduction from './introduction'
 
 class App extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       effect: 'bubbels'
     }
@@ -30,15 +36,21 @@ class App extends React.Component {
     })
 
     return (
-      <div className="App">
-        <div className="App-header">
-          <h2>APA102 Daemon control</h2>
+      <MuiThemeProvider theme={theme}>
+        <div className="App">
+          <AppBar position="static">
+            <Toolbar>
+              <Typography type="title" color="inherit">
+                APA102 Daemon control
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Introduction />
+          <div>
+            {effectNodes}
+          </div>
         </div>
-        <p className="App-intro">Lorem ipsum dolor sit amet</p>
-        <div>
-          {effectNodes}
-        </div>
-      </div>
+      </MuiThemeProvider>
     )
   }
 }

@@ -6,6 +6,9 @@
     "react-scripts": "1.0.11"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
+    "material-ui": "next",
+    "material-ui-icons": "next",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"

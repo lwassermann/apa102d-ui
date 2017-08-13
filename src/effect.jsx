@@ -1,10 +1,29 @@
 import React from 'react'
 import { bool, string, shape } from 'prop-types'
+import classnames from 'classnames'
+import { withStyles, createStyleSheet } from 'material-ui/styles'
 
-import './effect.css'
+import Card, { CardContent } from 'material-ui/Card'
+import Collapse from 'material-ui/transitions/Collapse'
+import Button from 'material-ui/Button'
 
 import Parameter from './parameters'
 import { send } from './communication'
+
+const styleSheet = createStyleSheet(theme => ({
+  card: {
+    maxWidth: 400,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    backgroundColor: theme.palette.background.default
+  },
+  cardActive: {
+    backgroundColor: theme.palette.background.contentFrame
+  },
+  effect: {
+    width: '100%'
+  }
+}))
 
 function selectEffect(name) {
   return () => {
@@ -21,6 +40,8 @@ function updateEffect(props) {
 }
 
 function Effect(props) {
+  const { classes } = props
+
   const parameters = Object.keys(props.parameters).map(parameterName =>
     <Parameter
       key={parameterName}
@@ -31,14 +52,21 @@ function Effect(props) {
   )
 
   return (
-    <div className={props.active ? 'effect active' : 'effect'}>
-      <button className="effect-header" onClick={selectEffect(props.name)}>
+    <Card className={classnames(classes.card, { [classes.cardActive]: props.active })}>
+      <Button
+        className={classes.effect}
+        onClick={selectEffect(props.name)}
+        aria-expanded={props.active}
+        aria-label="Select Effect"
+      >
         {props.name}
-      </button>
-      <div className="effect-parameters">
-        {parameters}
-      </div>
-    </div>
+      </Button>
+      <Collapse in={props.active} transitionDuration="auto" unmountOnExit>
+        <CardContent>
+          {parameters}
+        </CardContent>
+      </Collapse>{' '}
+    </Card>
   )
 }
 
@@ -55,4 +83,4 @@ Effect.defaultProps = {
   state: {}
 }
 
-export default Effect
+export default withStyles(styleSheet)(Effect)
