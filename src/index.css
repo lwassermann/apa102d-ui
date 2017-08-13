@@ -2,4 +2,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #fafafa;
+}
+
+.effects {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 16px 16px 16px;
 }

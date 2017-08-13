@@ -12,12 +12,12 @@ import { send } from './communication'
 
 const styleSheet = createStyleSheet(theme => ({
   card: {
-    maxWidth: 400,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.background.card,
+    transition: theme.transitions.create('margin')
   },
   cardActive: {
+    marginTop: 24,
+    marginBottom: 24,
     backgroundColor: theme.palette.background.contentFrame
   },
   effect: {
@@ -54,18 +54,21 @@ function Effect(props) {
   return (
     <Card className={classnames(classes.card, { [classes.cardActive]: props.active })}>
       <Button
-        className={classes.effect}
+        className={classnames(classes.effect)}
+        raised
+        color={props.active ? 'accent' : 'default'}
         onClick={selectEffect(props.name)}
         aria-expanded={props.active}
         aria-label="Select Effect"
       >
         {props.name}
       </Button>
-      <Collapse in={props.active} transitionDuration="auto" unmountOnExit>
-        <CardContent>
-          {parameters}
-        </CardContent>
-      </Collapse>{' '}
+      {parameters.length > 0 &&
+        <Collapse in={props.active} transitionDuration="auto" unmountOnExit>
+          <CardContent>
+            {parameters}
+          </CardContent>
+        </Collapse>}
     </Card>
   )
 }

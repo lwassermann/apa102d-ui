@@ -46,7 +46,7 @@ class App extends React.Component {
             </Toolbar>
           </AppBar>
           <Introduction />
-          <div>
+          <div className="effects">
             {effectNodes}
           </div>
         </div>
