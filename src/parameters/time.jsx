@@ -1,7 +1,6 @@
 import React from 'react'
 import { string, number, arrayOf, func } from 'prop-types'
-
-// import './color.css';
+import TextField from 'material-ui/TextField'
 
 const clamp = function(value, [min, max]) {
   return Math.min(Math.max(min, value), max)
@@ -20,14 +19,22 @@ class Time extends React.Component {
   }
 
   render() {
-    const currentValue = this.props.currentValue || this.props.default
+    const { name, label } = this.props
+    const currentValue = this.props.currentValue || this.props.defaultValue
 
     return (
       <div className="parameter time">
-        <span className="time-header">
-          {this.props.name}
-        </span>
-        <input type="number" value={currentValue} onChange={this.handleChange} />
+        <TextField
+          id={name}
+          label={label}
+          type="number"
+          value={currentValue}
+          onChange={this.handleChange}
+          margin="normal"
+          InputLabelProps={{
+            shrink: true
+          }}
+        />
       </div>
     )
   }
@@ -35,9 +42,10 @@ class Time extends React.Component {
 
 Time.propTypes = {
   name: string.isRequired,
-  default: number.isRequired,
+  label: string.isRequired,
+  defaultValue: number.isRequired,
   range: arrayOf(number).isRequired,
-  currentValue: number,
+  currentValue: string,
   onChange: func.isRequired
 }
 

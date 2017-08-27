@@ -32,7 +32,7 @@ class Color extends React.Component {
   }
 
   render() {
-    const rgb = this.toRGBValue(this.props.currentValue || this.props.default)
+    const rgb = this.toRGBValue(this.props.currentValue || this.props.defaultValue)
 
     return (
       <div className="parameter color">
@@ -47,12 +47,12 @@ class Color extends React.Component {
 
 Color.propTypes = {
   name: string.isRequired,
-  default: string,
+  defaultValue: string,
   onChange: func.isRequired
 }
 
 Color.defaultProps = {
-  default: 'hsv(0.0,0.0,0.0)'
+  defaultValue: 'hsv(0.0,0.0,0.0)'
 }
 
 export default Color
