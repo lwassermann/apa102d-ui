@@ -6,7 +6,7 @@ const clamp = function(value, [min, max]) {
   return Math.min(Math.max(min, value), max)
 }
 
-class Time extends React.Component {
+class NumberParameter extends React.Component {
   constructor() {
     super()
 
@@ -23,7 +23,7 @@ class Time extends React.Component {
     const currentValue = this.props.currentValue || this.props.defaultValue
 
     return (
-      <div className="parameter time">
+      <div className="parameter number">
         <TextField
           id={name}
           label={label}
@@ -40,7 +40,7 @@ class Time extends React.Component {
   }
 }
 
-Time.propTypes = {
+NumberParameter.propTypes = {
   name: string.isRequired,
   label: string.isRequired,
   defaultValue: number.isRequired,
@@ -49,8 +49,8 @@ Time.propTypes = {
   onChange: func.isRequired
 }
 
-Time.defaultProps = {
+NumberParameter.defaultProps = {
   currentValue: ''
 }
 
-export default Time
+export default NumberParameter

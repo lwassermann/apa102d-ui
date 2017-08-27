@@ -2,14 +2,14 @@ import React from 'react'
 import { string } from 'prop-types'
 
 import Color from './color'
-import Time from './time'
+import NumberParameter from './number'
 
 function Parameter(props) {
   switch (props.type) {
     case 'color':
       return <Color {...props} />
-    case 'time':
-      return <Time {...props} />
+    case 'number':
+      return <NumberParameter {...props} />
     default:
       return (
         <div className="parameter">

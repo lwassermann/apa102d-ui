@@ -23,7 +23,7 @@ const effects = [
     parameters: {
       test_length_ms: {
         label: 'Step length (ms)',
-        type: 'time',
+        type: 'number',
         defaultValue: 10,
         range: [5, 1000]
       },
