@@ -13,7 +13,7 @@ function Parameter(props) {
     default:
       return (
         <div className="parameter">
-          Unknown Type {props.type} {props.name}: {props.currentValue}
+          Unknown Type {props.type} {props.name}: {props.value}
         </div>
       )
   }
@@ -21,11 +21,11 @@ function Parameter(props) {
 Parameter.propTypes = {
   type: string.isRequired,
   name: string.isRequired,
-  currentValue: string
+  value: string
 }
 
 Parameter.defaultProps = {
-  currentValue: ''
+  value: ''
 }
 
 export default Parameter

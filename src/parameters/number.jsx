@@ -20,7 +20,7 @@ class NumberParameter extends React.Component {
 
   render() {
     const { name, label } = this.props
-    const currentValue = this.props.currentValue || this.props.defaultValue
+    const value = this.props.value || this.props.defaultValue
 
     return (
       <div className="parameter number">
@@ -28,7 +28,7 @@ class NumberParameter extends React.Component {
           id={name}
           label={label}
           type="number"
-          value={currentValue}
+          value={value}
           onChange={this.handleChange}
           margin="normal"
           InputLabelProps={{
@@ -45,12 +45,12 @@ NumberParameter.propTypes = {
   label: string.isRequired,
   defaultValue: number.isRequired,
   range: arrayOf(number).isRequired,
-  currentValue: string,
+  value: string,
   onChange: func.isRequired
 }
 
 NumberParameter.defaultProps = {
-  currentValue: ''
+  value: ''
 }
 
 export default NumberParameter

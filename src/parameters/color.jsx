@@ -21,8 +21,8 @@ class Color extends React.Component {
     this.props.onChange(this.props.name, `hsv(${h},${s},${v})`)
   }
 
-  toRGBValue(currentValue) {
-    const [, h, s, v] = (currentValue || '').match(/hsv\((\d\.\d+),(\d\.\d+),(\d\.\d+)\)/) || []
+  toRGBValue(value) {
+    const [, h, s, v] = (value || '').match(/hsv\((\d\.\d+),(\d\.\d+),(\d\.\d+)\)/) || []
     const { r, g, b } = HSVtoRGB(
       (h && parseFloat(h)) || 0.0,
       (s && parseFloat(s)) || 0.0,
@@ -32,7 +32,7 @@ class Color extends React.Component {
   }
 
   render() {
-    const rgb = this.toRGBValue(this.props.currentValue || this.props.defaultValue)
+    const rgb = this.toRGBValue(this.props.value || this.props.defaultValue)
 
     return (
       <div className="parameter color">
