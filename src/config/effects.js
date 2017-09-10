@@ -29,6 +29,7 @@ const effects = [
       },
       color: {
         type: 'color',
+        label: 'Test color',
         defaultValue: 'hsv(0.0,0.3,0.15)'
       }
     }
