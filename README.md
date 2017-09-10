@@ -5,4 +5,7 @@ This is some experimentation with the React Eco-System in the context of a Web-U
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Next Steps:
-* [ ] Connect with the actual daemon
+* [ ] Start the server on the PI after booting
+* [ ] https, then service worker
+* [ ] other effects
+* [ ] write the introduction
