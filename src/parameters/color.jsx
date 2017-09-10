@@ -73,11 +73,11 @@ class Color extends React.Component {
     const { clientWidth: width, clientHeight: height } = event.target
     if (x < width * RATIO) {
       const { h, s } = calculateHS(x, y, width * RATIO, height)
-      const v = 0
+      const { v } = this.parsedValue()
       // console.log({ h, s, v })
       this.props.onChange(`hsv(${h},${s},${v})`)
     } else {
-      const { h, s } = { h: 0.0, s: 0.0 }
+      const { h, s } = this.parsedValue()
       const { v } = calculateValueOf(
         y,
         (width - x) / width * (1 - RATIO),
