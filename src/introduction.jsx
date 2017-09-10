@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { object } from 'prop-types'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 
 import ExpandMore from 'material-ui-icons/ExpandMore'
 import ExpandLess from 'material-ui-icons/ExpandLess'
@@ -8,7 +8,7 @@ import Collapse from 'material-ui/transitions/Collapse'
 import IconButton from 'material-ui/IconButton'
 import Typography from 'material-ui/Typography'
 
-const styles = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     position: 'relative',
     backgroundColor: theme.palette.background.contentFrame,
@@ -25,7 +25,7 @@ const styles = createStyleSheet(theme => ({
     top: 7,
     right: 7
   }
-}))
+})
 
 class Introduction extends Component {
   state = {

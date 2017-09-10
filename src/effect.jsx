@@ -1,7 +1,7 @@
 import React from 'react'
 import { bool, string, shape } from 'prop-types'
 import classnames from 'classnames'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 
 import Card, { CardContent } from 'material-ui/Card'
 import Collapse from 'material-ui/transitions/Collapse'
@@ -10,7 +10,7 @@ import Button from 'material-ui/Button'
 import Parameter from './parameters'
 import { send } from './communication'
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
   card: {
     backgroundColor: theme.palette.background.card,
     transition: theme.transitions.create('margin')
@@ -23,7 +23,7 @@ const styleSheet = createStyleSheet(theme => ({
   effect: {
     width: '100%'
   }
-}))
+})
 
 function selectEffect(name) {
   return () => {
