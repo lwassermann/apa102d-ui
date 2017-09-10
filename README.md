@@ -6,5 +6,3 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Next Steps:
 * [ ] Connect with the actual daemon
-* [ ] Improve the Parameters to something more intuitive, not relying as much on HTML5
-* [ ] Send the whole spec, and not just the changed parameter (including defaults)
