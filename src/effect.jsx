@@ -33,7 +33,7 @@ function selectEffect(name) {
 
 function updateEffect(props, paramName) {
   return value => {
-    const parameters = Object.assign({}, { [paramName]: value }, props.state)
+    const parameters = Object.assign({}, props.state, { [paramName]: value })
     send({ effect: props.name, ...parameters })
   }
 }
