@@ -29,7 +29,7 @@ function any(predicate, arry) {
 
 function startServer() {
   const server = http.createServer((req, res) => {
-    if (req.url === '/effects' && req.method === 'POST') {
+    if ((req.url === '/api/effects' || req.url === '/effects') && req.method === 'POST') {
       handOffToApa102(req, res)
     } else if (
       req.method === 'GET' &&
